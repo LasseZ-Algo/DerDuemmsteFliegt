@@ -10,12 +10,13 @@ class ClientHandler extends Thread {
 	private Socket clientSocket;
 	private PrintWriter out;
 	private BufferedReader in;
-	
+
 	public ClientHandler(Socket socket) {
 		this.clientSocket = socket;
 	}
-	
+
 	public void run() {
+
 		try {
 			out = new PrintWriter(clientSocket.getOutputStream(), true);
 		} catch (IOException e) {
@@ -26,11 +27,25 @@ class ClientHandler extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
+		while (true) { //Sends Message to Server, Server broadcasts Message
+			String inputLine;
+			try {
+				if((inputLine = in.readLine()) != null){
+					Server.getInstance().broadcast(inputLine);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
 		/*
-		in.close();
-		out.close();
-		clientSocket.close();
+		 * in.close(); out.close(); clientSocket.close();
 		 */
+	}
+
+	//sends msg to client
+	public void sendMessage(String msg) {
+		out.println(msg);
 	}
 }
