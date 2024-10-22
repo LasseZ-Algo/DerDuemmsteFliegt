@@ -5,14 +5,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.List;
 
 class ClientHandler extends Thread {
 	private Socket clientSocket;
+	private List<ClientHandler> clientList;
 	private PrintWriter out;
 	private BufferedReader in;
 
-	public ClientHandler(Socket socket) {
+	public ClientHandler(Socket socket, List<ClientHandler> clients) {
 		this.clientSocket = socket;
+		clientList = clients;
 	}
 
 	public void run() {
@@ -32,7 +35,7 @@ class ClientHandler extends Thread {
 			String inputLine;
 			try {
 				if((inputLine = in.readLine()) != null){
-					Server.getInstance().broadcast(inputLine);
+					broadcast(inputLine);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -47,5 +50,12 @@ class ClientHandler extends Thread {
 	//sends msg to client
 	public void sendMessage(String msg) {
 		out.println(msg);
+	}
+	
+	//Broadcasts message from server to all clients.
+	public void broadcast(String msg) {
+		for(ClientHandler client : clientList) {
+			client.sendMessage(msg);
+		}
 	}
 }

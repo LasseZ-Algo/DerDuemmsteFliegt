@@ -3,8 +3,6 @@ package client;
 import java.io.*;
 import java.net.*;
 
-import server.Server;
-
 public class Client {
 	private Socket clientSocket;
 	private PrintWriter out;
@@ -40,14 +38,17 @@ public class Client {
 	// prints msg from Server, Client can write msg to Server
 	public void chat() throws IOException {
 		inputConsole = new BufferedReader(new InputStreamReader(System.in));
-
+		System.out.println("test");
 		while (true) {
 			String line = "";
 			while (!line.equals("exit")) {
 				line = inputConsole.readLine();
+
 				sendMessage(line);
 				System.out.println(in.readLine());
 			}
+			stopConnection();
+			System.out.println("Client disconnected");
 		}
 		
 	}
