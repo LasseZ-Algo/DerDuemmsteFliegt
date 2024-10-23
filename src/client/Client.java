@@ -37,19 +37,20 @@ public class Client {
 
 	// prints msg from Server, Client can write msg to Server
 	public void chat() throws IOException {
+		InputReader input = new InputReader(in);
+		Thread thread = new Thread(input);
+		thread.start();
 		inputConsole = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("test");
 		while (true) {
 			String line = "";
 			while (!line.equals("exit")) {
 				line = inputConsole.readLine();
-
 				sendMessage(line);
-				System.out.println(in.readLine());
 			}
+			input.stop();
 			stopConnection();
 			System.out.println("Client disconnected");
 		}
-		
 	}
 }

@@ -51,7 +51,7 @@ class ClientHandler extends Thread {
 	public void sendMessage(String msg) {
 		out.println(msg);
 	}
-	
+
 	//Broadcasts message from server to all clients.
 	public void broadcast(String msg) {
 		for(ClientHandler client : clientList) {

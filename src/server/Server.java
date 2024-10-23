@@ -35,5 +35,4 @@ public final class Server {
 	public void stop() throws IOException {
 		serverSocket.close();
 	}
-	
 }
