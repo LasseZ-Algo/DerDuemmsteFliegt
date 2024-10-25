@@ -12,6 +12,7 @@ class ClientHandler extends Thread {
 	private List<ClientHandler> clientList;
 	private PrintWriter out;
 	private BufferedReader in;
+	private String name;
 
 	public ClientHandler(Socket socket, List<ClientHandler> clients) {
 		this.clientSocket = socket;
@@ -30,8 +31,14 @@ class ClientHandler extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		while (true) { //Sends Message to Server, Server broadcasts Message
+		try {
+			name = in.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println(name);
+		while (true) {
+			
 			String inputLine;
 			try {
 				if((inputLine = in.readLine()) != null){
@@ -42,7 +49,7 @@ class ClientHandler extends Thread {
 			}
 		}
 
-		/*
+		/* TODO safely close
 		 * in.close(); out.close(); clientSocket.close();
 		 */
 	}
@@ -57,5 +64,9 @@ class ClientHandler extends Thread {
 		for(ClientHandler client : clientList) {
 			client.sendMessage(msg);
 		}
+	}
+	
+	public String getPlayerName() {
+		return name;
 	}
 }

@@ -8,6 +8,7 @@ public class Client {
 	private PrintWriter out;
 	private BufferedReader in;
 	private BufferedReader inputConsole = null;
+	private String name = "Peter";
 
 	public Client(String ip, int port) throws UnknownHostException, IOException {
 		startConnection(ip, port);
@@ -37,11 +38,11 @@ public class Client {
 
 	// prints msg from Server, Client can write msg to Server
 	public void chat() throws IOException {
+		sendMessage(name);
 		InputReader input = new InputReader(in);
 		Thread thread = new Thread(input);
 		thread.start();
 		inputConsole = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("test");
 		while (true) {
 			String line = "";
 			while (!line.equals("exit")) {
