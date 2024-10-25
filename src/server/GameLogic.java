@@ -5,8 +5,8 @@ import java.util.List;
 public class GameLogic {
 	private Player[] player;
 	private int turnCount; //Number of Turns per Round / Time per Turn
-	//TODO Fragenpool -> Kategorien -> Fragen -> Frage und Lösungen
-	//TODO Antworten -> Frage und Lösung, Spieler, Spielerantwort
+	private AllQuestions quests;
+	private AllAnswers anws;
 	
 	public GameLogic(int life, int turnCount, List<ClientHandler> clients){
 		this.turnCount = turnCount;
@@ -20,6 +20,7 @@ public class GameLogic {
 			i++;
 		}
 	}
+	
 	
 	
 }
