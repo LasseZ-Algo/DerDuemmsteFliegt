@@ -3,7 +3,7 @@ package server;
 import java.util.Random;
 
 public class AllQuestions {
-	private Categorie[] categories;
+	private Category[] categories;
 	private Random random;
 	
 	public AllQuestions() {
@@ -13,5 +13,9 @@ public class AllQuestions {
 	
 	public Question getQuestion() {
 		return categories[random.nextInt(categories.length)].getQuestion();
+	}
+	
+	public Question getQuestion(int categoryIndex) {
+		return categories[categoryIndex].getQuestion();
 	}
 }

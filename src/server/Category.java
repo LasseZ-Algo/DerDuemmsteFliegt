@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Categorie {
+public class Category {
 	private List<Question> questionList = new ArrayList<>();
 	private Random random;
 	
-	public Categorie() {
+	public Category() {
 		//TODO create Questions in questionList
 		random = new Random();
 	}
