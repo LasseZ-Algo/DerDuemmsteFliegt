@@ -8,6 +8,7 @@ public class GameLogic {
 	private int turnCount; //Number of Turns per Round / Time per Turn
 	private AllQuestions quests;
 	private AllAnswers anws;
+	//TODO Save Gamerules
 	
 	public GameLogic(int life, int turnCount, List<ClientHandler> clients){
 		this.turnCount = turnCount;
@@ -35,12 +36,31 @@ public class GameLogic {
 		anws.add(question, playername, answer);
 	}
 	
+	public List<Answer> getAnswers(){
+		return anws.getAnswers();
+	}
+	
+	public String getPlayerName(int p) {
+		return player[p].getName();
+	}
+	
+	public int getPlayerLife(int p) {
+		return player[p].getLife();
+	}
+	
+	public int getNumberOfPlayers() {
+		return player.length;
+	}
+	
+	public int getTurnCount() {
+		return turnCount;
+	}
+	
 	public boolean playerLoseLife(int mostVotedPlayer) {
 		player[mostVotedPlayer].loseLife();
 		return (0 == player[mostVotedPlayer].getLife());
 	}
 	
-	//TODO: Skip votes
 	public List<Integer> voting(int[] votes) {
 		int[] voteCount = new int[player.length];
 		for(int i : votes) {

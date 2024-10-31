@@ -37,35 +37,66 @@ class ClientHandler extends Thread {
 			e.printStackTrace();
 		}
 		System.out.println(name);
+
+		broadcast("Hello " + name);
+
 		while (true) {
-			
-			String inputLine;
+			char inputType = '0';
 			try {
-				if((inputLine = in.readLine()) != null){
-					broadcast(inputLine);
-				}
+				inputType = (char)in.read();
 			} catch (IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			System.out.println(inputType);
+			switch (inputType) {
+			case '1':				//Chat msg
+				String inputLine;
+				try {
+					if ((inputLine = in.readLine()) != null) {
+						broadcast(inputLine);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				break;
+			case '2':				//PlayerAnswers	
+				//TODO handle PlayerAnswers
+			break;
+			case '3':				//PlayerVote
+			
+			break;
+			case '0':			//No Input
+				
+			break;
+			default:			//Unexpected input
+				/*try {
+					throw new IOException();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				*/
+			}
+
 		}
 
-		/* TODO safely close
-		 * in.close(); out.close(); clientSocket.close();
+		/*
+		 * TODO safely close in.close(); out.close(); clientSocket.close();
 		 */
 	}
 
-	//sends msg to client
+	// sends msg to client
 	public void sendMessage(String msg) {
 		out.println(msg);
 	}
 
-	//Broadcasts message from server to all clients.
+	// Broadcasts message from server to all clients.
 	public void broadcast(String msg) {
-		for(ClientHandler client : clientList) {
+		for (ClientHandler client : clientList) {
 			client.sendMessage(msg);
 		}
 	}
-	
+
 	public String getPlayerName() {
 		return name;
 	}

@@ -29,7 +29,7 @@ public class Client {
 
 	// sends msg to Server
 	public void sendMessage(String msg) {
-		out.println(msg);
+		out.println(1+msg);
 	}
 	
 	public String receiveMessage() throws IOException {
@@ -38,7 +38,7 @@ public class Client {
 
 	// prints msg from Server, Client can write msg to Server
 	public void chat() throws IOException {
-		sendMessage(name);
+		out.println(name);
 		InputReader input = new InputReader(in);
 		Thread thread = new Thread(input);
 		thread.start();
