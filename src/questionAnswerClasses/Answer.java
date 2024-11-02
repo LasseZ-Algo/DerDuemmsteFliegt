@@ -1,4 +1,4 @@
-package server;
+package questionAnswerClasses;
 
 public class Answer {
 	private Question quest;

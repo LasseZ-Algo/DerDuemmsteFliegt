@@ -1,4 +1,4 @@
-package server;
+package questionAnswerClasses;
 
 public class Question {
 	private String query;
