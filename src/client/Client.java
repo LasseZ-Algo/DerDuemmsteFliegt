@@ -29,9 +29,9 @@ public class Client {
 
 	// sends msg to Server
 	public void sendMessage(String msg) {
-		out.println(1+msg);
+		out.println(1 + msg);
 	}
-	
+
 	public String receiveMessage() throws IOException {
 		return in.readLine();
 	}
@@ -43,15 +43,13 @@ public class Client {
 		Thread thread = new Thread(input);
 		thread.start();
 		inputConsole = new BufferedReader(new InputStreamReader(System.in));
-		while (true) {
+		while(true) {
 			String line = "";
-			while (!line.equals("exit")) {
-				line = inputConsole.readLine();
-				sendMessage(line);
-			}
-			input.stop();
-			stopConnection();
-			System.out.println("Client disconnected");
+			line = inputConsole.readLine();
+			sendMessage(line);
 		}
+		//input.stop();
+		//stopConnection();
+		//System.out.println("Client disconnected");
 	}
 }

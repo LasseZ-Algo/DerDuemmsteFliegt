@@ -93,7 +93,7 @@ class ClientHandler extends Thread {
 	// Broadcasts message from server to all clients.
 	public void broadcast(String msg) {
 		for (ClientHandler client : clientList) {
-			client.sendMessage(msg);
+			client.sendMessage(1 + msg);
 		}
 	}
 

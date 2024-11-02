@@ -23,7 +23,7 @@ public final class Server {
 
 	public void start(int port) throws IOException {
 		serverSocket = new ServerSocket(port);
-		System.out.println("Server staret");
+		System.out.println("Server startet");
 		while (true) {
 			ClientHandler client = new ClientHandler(serverSocket.accept(), clients);
 			client.start();

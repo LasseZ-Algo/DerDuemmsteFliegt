@@ -8,7 +8,7 @@ import client.Client;
 public class testCLient {
 
 	public static void main(String[] args) throws UnknownHostException, IOException {
-		Client client = new Client("10.188.6.16", 5555);
+		Client client = new Client("26.233.84.27", 5555);
 		System.out.println("Client startet");
 	}
 

@@ -6,10 +6,9 @@ public class CreateId {
 
 	//if ID does not exist {
 	void createId() {
-		long time = (System.currentTimeMillis() / 1000L);
+		long time = System.currentTimeMillis();
 		Random randomValue = new Random();
-		Long hash = time + randomValue.nextInt(10000);
-		hash.hashCode();
+		Long id = time + randomValue.nextInt(100000);
 		//Save hash in Directory
 	}
 
