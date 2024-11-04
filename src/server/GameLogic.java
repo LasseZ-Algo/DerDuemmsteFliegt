@@ -61,6 +61,14 @@ public class GameLogic {
 		return turnCount;
 	}
 	
+	public String getPlayerNames() {
+		String players = "";
+		for (Player p : player) {
+			players = players + "~" + p.getName();
+		}
+		return players;
+	}
+	
 	public boolean playerLoseLife(int mostVotedPlayer) {
 		player[mostVotedPlayer].loseLife();
 		return (0 == player[mostVotedPlayer].getLife());

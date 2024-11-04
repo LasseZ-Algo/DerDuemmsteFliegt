@@ -54,7 +54,7 @@ class ClientHandler extends Thread {
 				String inputLine;
 				try {
 					if ((inputLine = in.readLine()) != null) {
-						broadcast(inputLine);
+						broadcast(1+inputLine);
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -93,7 +93,7 @@ class ClientHandler extends Thread {
 	// Broadcasts message from server to all clients.
 	public void broadcast(String msg) {
 		for (ClientHandler client : clientList) {
-			client.sendMessage(1 + msg);
+			client.sendMessage(msg);
 		}
 	}
 
