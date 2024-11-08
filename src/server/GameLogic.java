@@ -93,13 +93,7 @@ public class GameLogic {
 		return mostVote;
 	}
 	
-	public boolean skipQuestion(boolean[] toSkip) {
-		int skip = 0;
-		for(int i = 0; i < toSkip.length; i++) {
-			if (toSkip[i] == true) {
-				skip++;
-			}
-		}
+	public boolean skipQuestion(int skip) {
 		if(skip >= (player.length / 2) + 1) {
 			return true;
 		} else {

@@ -2,24 +2,32 @@ package server;
 
 import java.util.List;
 
-public class Session {
+public class Session{
 	GameLogic gL;
 	List<ClientHandler> clients;
 	boolean gameRunning = true;
+	int skipQuestionCount = 0;
 
 	public Session(GameLogic gameLogic, List<ClientHandler> clients) {
 		gL = gameLogic;
 		this.clients = clients;
 		InitializeGame();
-		game();
 	}
-
-	private void game() {
-		while (gameRunning) {
-			Questions();
-			Voting();
+	
+	void SkipQuestion() {
+		skipQuestionCount++;
+		if (gL.skipQuestion(skipQuestionCount)) {
+			//Broadcast to all Players
+			//get new question (and broadcast)
+			skipQuestionCount = 0;
 		}
 	}
+	
+	void DontSkipQuestion() {
+		skipQuestionCount--;
+	}
+	
+	
 
 	private void InitializeGame() {
 		broadcast("31" + gL.getPlayerNames());
@@ -29,19 +37,6 @@ public class Session {
 		broadcast("33" + gL.getTurnCount());
 
 		// TODO Gamerules
-	}
-
-	private void Questions() {
-		for (int i = 0; i < gL.getTurnCount(); i++) {
-			for (int o = 0; o < gL.getNumberOfPlayers(); o++) {
-				broadcast("2"+gL.getQuestion());
-			}
-		}
-		//TODO Gamerule:Categories
-	}
-
-	private void Voting() {
-
 	}
 
 	private void broadcast(String msg) {
