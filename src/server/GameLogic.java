@@ -37,8 +37,12 @@ public class GameLogic {
 		return quests.getQuestion(categoryIndex);
 	}
 	
-	public void saveAnswers(Question question, String playername, String answer) {
+	public void saveAnswer(Question question, String playername, String answer) {
 		anws.add(question, playername, answer);
+	}
+	
+	public void saveAnswer(Answer answer) {
+		anws.add(answer);
 	}
 	
 	public List<Answer> getAnswers(){
@@ -74,7 +78,7 @@ public class GameLogic {
 		return (0 == player[mostVotedPlayer].getLife());
 	}
 	
-	public List<Integer> voting(int[] votes) {
+	public List<Integer> voting(List<Integer> votes) {
 		int[] voteCount = new int[player.length];
 		for(int i : votes) {
 			voteCount[i]++;
@@ -93,7 +97,7 @@ public class GameLogic {
 		return mostVote;
 	}
 	
-	public boolean skipQuestion(int skip) {
+	public boolean skip(int skip) {
 		if(skip >= (player.length / 2) + 1) {
 			return true;
 		} else {

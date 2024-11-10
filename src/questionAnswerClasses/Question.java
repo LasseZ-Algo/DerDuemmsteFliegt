@@ -9,11 +9,11 @@ public class Question {
 		solution = s;
 	}
 	
-	String getQuery() {
+	public String getQuery() {
 		return query;
 	}
 	
-	String getSolution() {
+	public String getSolution() {
 		return solution;
 	}
 }

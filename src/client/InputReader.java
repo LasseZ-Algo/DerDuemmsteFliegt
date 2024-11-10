@@ -46,7 +46,7 @@ public class InputReader implements Runnable{
 					//TODO get Player, Question, Answer, Solution
 					break;
 				
-				case '5': //events (Player loses life, Question skipped, Player dies, start vote, vote results)
+				case '5': //events (Player loses life"51", Player dies"50", start vote"52"(+Voteable Players ~getrennt~)
 					//TODO 
 					break;
 					

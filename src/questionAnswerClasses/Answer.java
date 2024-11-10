@@ -27,7 +27,7 @@ public class Answer {
 		return answer;
 	}
 	
-	public String getBigAnswer() {
+	public String getBigAnswer() { //TODO rewrite to conform to clientInputReader
 		return "Frage: " + quest.getQuery() + "\n Lösung: " + quest.getSolution() + 
 				"\n" + name + " : " + answer;
 	}

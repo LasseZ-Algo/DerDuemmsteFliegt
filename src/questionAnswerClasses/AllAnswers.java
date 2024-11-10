@@ -10,6 +10,10 @@ public class AllAnswers {
 		answerList.add(new Answer(quest, name, answer));
 	}
 	
+	public void add(Answer answer) {
+		answerList.add(answer);
+	}
+	
 	public List<Answer> getAnswers(){
 		return answerList;
 	}
