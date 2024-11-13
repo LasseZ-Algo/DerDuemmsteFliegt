@@ -77,7 +77,13 @@ class ClientHandler extends Thread {
 				}
 				*/
 			}
-
+/*
+		String test = "abc~def~ghe:rts";
+		String[] testarray = test.split("[~:]");
+		for(String string : testarray) {
+			System.out.println(string);
+		}
+ */
 		}
 
 		/*

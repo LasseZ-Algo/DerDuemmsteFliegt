@@ -23,8 +23,8 @@ public class Session {
 	void skipQuestion() {
 		skipQuestionCount++;
 		if (gL.skip(skipQuestionCount)) {
-			// Broadcast to all Players
-			// get new question (and broadcast)
+			activeQuestion = newQuestion();
+			broadcast("2~" + activePlayer + "~" + activeQuestion.getQuery());
 			skipQuestionCount = 0;
 		}
 	}
@@ -36,8 +36,7 @@ public class Session {
 	void skipVote() {
 		skipVoteCount++;
 		if (gL.skip(skipQuestionCount)) {
-			// Broadcast to all Players
-			// skip the vote, proceed to questions
+			nextPlayer();	// skip the vote, proceed to questions
 			skipVoteCount = 0;
 		}
 	}
@@ -57,7 +56,7 @@ public class Session {
 	void answerGiven(String answer) {
 		Answer fullAnswer = new Answer(activeQuestion, gL.getPlayerName(activePlayer), answer);
 		gL.saveAnswer(fullAnswer);
-		broadcast("4" + fullAnswer.getBigAnswer());
+		broadcast("4~" + fullAnswer.getBigAnswer());
 		nextPlayer();
 	}
 
@@ -65,10 +64,10 @@ public class Session {
 		activePlayer++;
 		if (activePlayer <= gL.getNumberOfPlayers()) {
 			activeQuestion = newQuestion();
-			broadcast("2" + activeQuestion.getQuery());
+			broadcast("2~" + activePlayer + "~" + activeQuestion.getQuery());
 		} else {
 			activePlayer = -1;
-			broadcast("52");
+			broadcast("52"); // Start vote
 		}
 	}
 
@@ -76,11 +75,11 @@ public class Session {
 		votes.add(vote);
 		if (votes.size() >= gL.getNumberOfPlayers()) {
 			List<Integer> voteWinner = gL.voting(votes);
-			if (voteWinner.size() == 1) { // PlayerLoseLife / PlayerDies
+			if (voteWinner.size() == 1) {
 				if (gL.playerLoseLife(voteWinner.get(0))) {
-					broadcast("50" + voteWinner.get(0));
+					broadcast("50~" + voteWinner.get(0));	//Player dead
 				} else {
-					broadcast("51" + voteWinner.get(0));
+					broadcast("51~" + voteWinner.get(0));	//Player lose life
 				}
 			} else { // newVote with mostVotedPlayers
 				String winners = "";
@@ -93,11 +92,11 @@ public class Session {
 	}
 
 	private void initializeGame() {
-		broadcast("31" + gL.getPlayerNames());
+		broadcast("31~" + gL.getPlayerNames());
 
-		broadcast("32" + gL.getPlayerLife(0));
+		broadcast("32~" + gL.getPlayerLife(0));
 
-		broadcast("33" + gL.getTurnCount());
+		broadcast("33~" + gL.getTurnCount());
 
 		// TODO Gamerules
 	}
