@@ -6,18 +6,17 @@ import questionAnswerClasses.Answer;
 import questionAnswerClasses.Question;
 
 public class Session {
-	GameLogic gL;
-	List<ClientHandler> clients;
-	int skipQuestionCount = 0;
-	int skipVoteCount = 0;
-	int activePlayer = -1;
-	Question activeQuestion;
-	List<Integer> votes;
+	private GameLogic gL;
+	private List<ClientHandler> clients;
+	private int skipQuestionCount = 0;
+	private int skipVoteCount = 0;
+	private int activePlayer = -1;
+	private Question activeQuestion;
+	private List<Integer> votes;
 
 	public Session(GameLogic gameLogic, List<ClientHandler> clients) {
 		gL = gameLogic;
 		this.clients = clients;
-		initializeGame();
 	}
 
 	void skipQuestion() {
@@ -35,7 +34,7 @@ public class Session {
 
 	void skipVote() {
 		skipVoteCount++;
-		if (gL.skip(skipQuestionCount)) {
+		if (gL.skip(skipVoteCount)) {
 			nextPlayer();	// skip the vote, proceed to questions
 			skipVoteCount = 0;
 		}
@@ -81,6 +80,7 @@ public class Session {
 				} else {
 					broadcast("51~" + voteWinner.get(0));	//Player lose life
 				}
+				nextPlayer();	//next Question
 			} else { // newVote with mostVotedPlayers
 				String winners = "";
 				for (int i : voteWinner) {
@@ -91,7 +91,8 @@ public class Session {
 		}
 	}
 
-	private void initializeGame() {
+	public void initializeGame(int[] gamerules, List<ClientHandler> clients) {
+		gL.initializeGame(gamerules, clients);
 		broadcast("31~" + gL.getPlayerNames());
 
 		broadcast("32~" + gL.getPlayerLife(0));

@@ -18,14 +18,17 @@ public final class Server {
 		if(INSTANCE == null) {
 			INSTANCE = new Server();
 		}
+		
 		return INSTANCE;
 	}
 
 	public void start(int port) throws IOException {
 		serverSocket = new ServerSocket(port);
+		GameLogic gameLogic = new GameLogic();
+		Session session = new Session(gameLogic, clients);
 		System.out.println("Server startet");
 		while (true) {
-			ClientHandler client = new ClientHandler(serverSocket.accept(), clients);
+			ClientHandler client = new ClientHandler(serverSocket.accept(), clients, session);
 			client.start();
 			clients.add(client);
 			System.out.println("Client connected");

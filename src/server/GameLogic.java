@@ -13,11 +13,13 @@ public class GameLogic {
 	private int turnCount; // Number of Turns per Round / Time per Turn
 	private AllQuestions quests;
 	private AllAnswers anws;
+	private int[] gamerules;
 	// TODO Save Gamerules
-
-	public GameLogic(int life, int turnCount, List<ClientHandler> clients) {
-		this.turnCount = turnCount;
-		createPlayers(clients, life);
+	
+	public void initializeGame(int[] gamerules, List<ClientHandler> clients) {
+		this.gamerules = gamerules;
+		this.turnCount = gamerules[1];
+		createPlayers(clients, gamerules[0]);
 	}
 
 	private void createPlayers(List<ClientHandler> clients, int life) {
