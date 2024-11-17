@@ -5,6 +5,7 @@ import java.io.IOException;
 
 public class InputReader implements Runnable{
 	private BufferedReader in;
+	private ClientLogic clientLogic;
 	boolean isRunning = true;
 
 	public InputReader(BufferedReader in) {
@@ -35,11 +36,24 @@ public class InputReader implements Runnable{
 					}
 					break;
 					
-				case '2': //Question
-					//TODO get Question
+				case '2': //ActivePlayer and Question	
+					try {
+						String[] playerAndQuestion = in.readLine().split("~");
+						clientLogic.newQuestion(Integer.parseInt(playerAndQuestion[0]), playerAndQuestion[1]);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					break;
 				
 				case '3': //Initialize game (Players, Lifes, Rounds, [Gamerulez])
+					try { //"Jochen~Hans|3~2"
+						String[] initValues = in.readLine().split("|");
+						clientLogic.initGame(initValues[0], initValues[1]);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					break;
 					
 				case '4': // Player, Question, Answer, Solution
