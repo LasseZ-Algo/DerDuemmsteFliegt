@@ -66,7 +66,7 @@ public class Session {
 			broadcast("2~" + activePlayer + "~" + activeQuestion.getQuery());
 		} else {
 			activePlayer = -1;
-			broadcast("52"); // Start vote
+			broadcast("6~-1"); // Start vote
 		}
 	}
 
@@ -76,9 +76,9 @@ public class Session {
 			List<Integer> voteWinner = gL.voting(votes);
 			if (voteWinner.size() == 1) {
 				if (gL.playerLoseLife(voteWinner.get(0))) {
-					broadcast("50~" + voteWinner.get(0));	//Player dead
+					broadcast("5~" + voteWinner.get(0));	//Player dead
 				} else {
-					broadcast("51~" + voteWinner.get(0));	//Player lose life
+					broadcast("5~" + voteWinner.get(0));	//Player lose life
 				}
 				nextPlayer();	//next Question
 			} else { // newVote with mostVotedPlayers
@@ -86,7 +86,7 @@ public class Session {
 				for (int i : voteWinner) {
 					winners = winners + "~" + i;
 				}
-				broadcast("52" + winners);
+				broadcast("6" + winners);
 			}
 		}
 	}
@@ -106,6 +106,10 @@ public class Session {
 		for (ClientHandler client : clients) {
 			client.sendMessage(msg);
 		}
+	}
+	
+	public void sync() {
+		//TODO create Sync
 	}
 
 }

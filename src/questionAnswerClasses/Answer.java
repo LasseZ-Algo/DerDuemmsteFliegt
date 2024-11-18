@@ -5,6 +5,12 @@ public class Answer {
 	private String name;
 	private String answer;
 	
+	public Answer(String query, String solution, String name, String answer) {
+		this.quest = new Question(query, solution);
+		this.name = name;
+		this.answer = answer;
+	}
+	
 	public Answer(Question quest, String name, String answer) {
 		this.quest = quest;
 		this.name = name;
@@ -28,7 +34,6 @@ public class Answer {
 	}
 	
 	public String getBigAnswer() { //TODO rewrite to conform to clientInputReader
-		return "Frage: " + quest.getQuery() + "\n Lösung: " + quest.getSolution() + 
-				"\n" + name + " : " + answer;
+		return quest.getQuery() + "~"+ quest.getSolution() + "~" + name + "~" + answer;
 	}
 }
