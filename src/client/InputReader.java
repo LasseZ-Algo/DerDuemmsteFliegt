@@ -97,7 +97,7 @@ public class InputReader implements Runnable{
 					
 				case '9': //sync with gamestate
 					//int activePlayer | String question | List<Integer> gameRules | 
-					//List<Player> players | AllAnswers answers | boolean isVoting
+					//List<Player> players | AllAnswers answers
 					try {
 						String[] syncValues = in.readLine().split("|");
 						int activePlayer = Integer.parseInt(syncValues[0]);
@@ -122,7 +122,7 @@ public class InputReader implements Runnable{
 							answers.add(new Answer(wAA[0], wAA[1], wAA[2], wAA[3]));
 						}
 						
-						if(syncValues[5] == "true") {
+						if(activePlayer == -1) {
 							isVoting = true;
 						}else {
 							isVoting = false;

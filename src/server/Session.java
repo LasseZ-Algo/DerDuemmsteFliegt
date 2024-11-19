@@ -1,5 +1,6 @@
 package server;
 
+import java.util.Arrays;
 import java.util.List;
 
 import questionAnswerClasses.Answer;
@@ -108,8 +109,15 @@ public class Session {
 		}
 	}
 	
-	public void sync() {
-		//TODO create Sync
+	//int activePlayer | String question | List<Integer> gameRules | 
+	//List<Player> players | AllAnswers answers
+	public void sync(ClientHandler client) {
+		String sync = activePlayer + "|" 
+						+ activeQuestion.getQuery() + "|"
+						+ gL.getGameRulesString() + "|" 
+						+ gL.getPlayerNames() + "|" 
+						+ gL.getAllAnswers();
+		client.sendMessage(sync);
 	}
 
 }

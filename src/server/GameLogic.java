@@ -28,6 +28,22 @@ public class GameLogic {
 		}
 	}
 
+	public int[] getGameRules() {
+		return this.gamerules;
+	}
+	
+	public String getGameRulesString() {
+		String gameRulesString = "";
+		for(int i = 0; i < gamerules.length; i++) {
+			if(i < gamerules.length) {
+				gameRulesString += gamerules[i] + "~";
+			} else {
+				gameRulesString += gamerules[i];
+			}
+		}
+		return gameRulesString;
+	}
+	
 	public Question getQuestion() {
 		return quests.getQuestion();
 	}
@@ -48,6 +64,10 @@ public class GameLogic {
 	public List<Answer> getAnswers() {
 		return anws.getAnswers();
 	}
+	
+	public String getAllAnswers() {
+		return anws.getAllAnswersString();
+	}
 
 	public String getPlayerName(int p) {
 		return player.get(p).getName();
@@ -66,11 +86,15 @@ public class GameLogic {
 	}
 
 	public String getPlayerNames() {
-		String players = "";
-		for (Player p : player) {
-			players = players + "~" + p.getName();
+		String playerNamesString = "";
+		for(int i = 0; i < player.size(); i++) {
+			if(i < player.size()) {
+				playerNamesString += player.get(i) + "~";
+			} else {
+				playerNamesString += player.get(i);
+			}
 		}
-		return players;
+		return playerNamesString;
 	}
 
 	public boolean playerLoseLife(int mostVotedPlayer) {

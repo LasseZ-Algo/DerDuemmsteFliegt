@@ -18,6 +18,18 @@ public class AllAnswers {
 		return answerList;
 	}
 	
+	public String getAllAnswersString() {
+		String allAnswersString = "";
+		for(int i = 0; i < answerList.size(); i ++) {
+			if(i == answerList.size()) {
+				allAnswersString += answerList.get(i).getBigAnswer();
+			} else {
+				allAnswersString += answerList.get(i).getBigAnswer() + "§";
+			}
+		}
+		return allAnswersString;
+	}
+	
 	public void flush() {
 		answerList.clear();
 	}
