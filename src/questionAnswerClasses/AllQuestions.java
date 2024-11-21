@@ -6,8 +6,8 @@ public class AllQuestions {
 	private Category[] categories;
 	private Random random;
 	
-	public AllQuestions() {
-		//TODO invoke Categorie Constructors
+	public AllQuestions(Category[] categories) {
+		this.categories = categories;
 		random = new Random();
 	}
 	
