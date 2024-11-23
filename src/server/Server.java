@@ -31,7 +31,6 @@ public final class Server {
 			ClientHandler client = new ClientHandler(serverSocket.accept(), clients, session);
 			client.start();
 			clients.add(client);
-			System.out.println("Client connected");
 		}
 	}
 

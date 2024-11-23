@@ -43,13 +43,13 @@ public class Client {
 		Thread thread = new Thread(input);
 		thread.start();
 		inputConsole = new BufferedReader(new InputStreamReader(System.in));
-		while(true) {
+		while(thread.isAlive()) {
 			String line = "";
 			line = inputConsole.readLine();
 			sendMessage(line);
 		}
-		//input.stop();
-		//stopConnection();
-		//System.out.println("Client disconnected");
+		input.stop();
+		stopConnection();
+		System.out.println("Client disconnected");
 	}
 }

@@ -39,19 +39,19 @@ class ClientHandler extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(name);
+		
+		System.out.println(name + " connected.");
 
-		broadcast("Hello " + name);
+		broadcast(1 + "Hello " + name);
 
-		while (true) {
+		boolean isRunning = true;
+		while (isRunning) {
 			char inputType = '0';
 			try {
 				inputType = (char) in.read();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				isRunning = false;
 			}
-			System.out.println(inputType);
 			switch (inputType) {
 			case '1': // Chat msg
 				String inputLine;
@@ -132,12 +132,16 @@ class ClientHandler extends Thread {
 				 * }
 				 */
 			}
-			/*
-			 * String test = "abc~def~ghe:rts"; 
-			 * String[] testarray = test.split("~");
-			 * for(String string : testarray) { System.out.println(string); }
-			 */
 		}
+		try {
+			in.close();
+			out.close(); 
+			clientSocket.close();
+			System.out.println(name + " disconnected.");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 
 		/*
 		 * TODO safely close in.close(); out.close(); clientSocket.close();

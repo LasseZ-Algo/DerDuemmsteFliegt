@@ -58,6 +58,7 @@ public class FileManager {
 				String[] quest = question.split("~");
 				category.add(new Question(quest[0], quest[1]));
 			}
+			reader.close();
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -68,19 +69,18 @@ public class FileManager {
 
 	public AllQuestions read(String[] filenames) {
 		Category[] categories = new Category[filenames.length];
-		for(int i = 0; i<filenames.length; i++) {
+		for (int i = 0; i < filenames.length; i++) {
 			categories[i] = read(filenames[i]);
 		}
 		return new AllQuestions(categories);
 	}
 
 	public boolean delete(String filename) {
-		File file = new File("filename.txt"); 
-	    if (file.delete()) { 
-	      return true;
-	    } else {
-	      return false;
-	    } 
+		File file = new File(path + filename);
+		if (file.delete()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-
 }
