@@ -1,0 +1,42 @@
+/*	Good for CSS:
+	https://www.w3schools.com/css/default.asp
+	
+	Good for JavaFX css:
+	https://docs.oracle.com/javafx/2/api/javafx/scene/doc-files/cssref.html
+*/
+/*
+Values for:
+*/
+/*all elements */
+.root{
+	-fx-background-color:"green";
+}
+
+/*Label-classes*/
+.label{
+	-fx-font-site: 20;
+	-fx-font-family: "Comic Sans MS";
+}
+
+.button{
+	-fx-border-radius: 500px;
+}
+
+/*idLabels*/
+#testLabel{
+	-fx-font-size: 40;
+	-fx-font-color: "blue";
+	-fx-background-color: "blue";
+}
+
+/*multiple elements*/
+#testLabel, #testLabel2, #testLabel3{
+	-fx-font-size: 40;
+	-fx-text-fill: "blue";
+	-fx-background-color: "blue";
+}
+
+/*pseudo-classes*/
+.button:hover{
+	-fx-background-color:"gray";
+}

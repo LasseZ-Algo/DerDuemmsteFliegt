@@ -1,4 +1,4 @@
-package testClasses;
+package graphicComponents;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,8 +11,12 @@ public class TestJavaFx extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("testoffx.fxml"));
+        Scene scene = new Scene(root);
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 400, 300));
+        primaryStage.setScene(scene);
+        String css = this.getClass().getResource("Style.css").toExternalForm();
+        scene.getStylesheets().add(css);
+        //scene2.getStylesheets().add(css);
         primaryStage.show();
     }
 

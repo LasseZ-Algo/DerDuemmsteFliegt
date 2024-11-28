@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1066.0" prefWidth="1530.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicComponents.TestController">
+   <children>
+      <Button layoutX="124.0" layoutY="115.0" mnemonicParsing="false" onAction="#hostGame" prefHeight="41.0" prefWidth="214.0" text="Host Game" />
+      <Button layoutX="124.0" layoutY="300.0" mnemonicParsing="false" onAction="#hostGame" prefHeight="41.0" prefWidth="214.0" text="Join Game" />
+      <Button layoutX="124.0" layoutY="388.0" mnemonicParsing="false" onAction="#hostGame" prefHeight="41.0" prefWidth="214.0" text="Frageneditor" />
+      <Button layoutX="124.0" layoutY="492.0" mnemonicParsing="false" onAction="#switchToCredits" prefHeight="41.0" prefWidth="214.0" text="Credits" />
+      <Button layoutX="124.0" layoutY="576.0" mnemonicParsing="false" onAction="#hostGame" prefHeight="41.0" prefWidth="214.0" text="Exit" />
+      <TextField alignment="CENTER" layoutX="124.0" layoutY="207.0" prefHeight="51.0" prefWidth="214.0" text="IP-Adress" />
+      <TextField alignment="CENTER" layoutX="1116.0" layoutY="233.0" prefHeight="51.0" prefWidth="214.0" text="Username" />
+   </children>
+</AnchorPane>
