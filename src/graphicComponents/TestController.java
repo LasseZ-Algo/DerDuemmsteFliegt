@@ -18,7 +18,7 @@ public class TestController {
 
 	private Stage stage;
 	private Scene scene;
-	//private Parent root;
+	private Parent root;
 
 	public void switchToCredits(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("Credits.fxml"));
