@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1066.0" prefWidth="1530.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicComponents.TestController">
+   <children>
+      <Button layoutX="124.0" layoutY="492.0" mnemonicParsing="false" onAction="#switchToCredits" prefHeight="41.0" prefWidth="214.0" text="Credits" />
+      <TextField fx:id="IPAdress" alignment="CENTER" layoutX="124.0" layoutY="207.0" prefHeight="51.0" prefWidth="214.0" text="IP-Adress" />
+      <TextField fx:id="changeUsername" alignment="CENTER" layoutX="1116.0" layoutY="233.0" onAction="#getUsername" prefHeight="51.0" prefWidth="214.0" text="Username" />
+      <Button fx:id="ExitApplication" layoutX="124.0" layoutY="579.0" mnemonicParsing="false" onAction="#quitApplication" prefHeight="41.0" prefWidth="214.0" text="Exit" />
+   </children>
+</AnchorPane>
