@@ -56,6 +56,47 @@ public class TestController {
 		String username = changeUsername.getText();
 		System.out.println(username);
 	}
+	
+	public void switchToEditor(ActionEvent event) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("Editor.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		String css = this.getClass().getResource("Style.css").toExternalForm();
+		scene.getStylesheets().add(css);
+		stage.show();
+	}
+	
+	public void switchToLobby(ActionEvent event) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("Lobby.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		String css = this.getClass().getResource("Style.css").toExternalForm();
+		scene.getStylesheets().add(css);
+		stage.show();
+	}
+	
+	public void switchToGame(ActionEvent event) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("Game.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		String css = this.getClass().getResource("Style.css").toExternalForm();
+		scene.getStylesheets().add(css);
+		stage.show();
+	}
+	
+	public void connect(ActionEvent event) throws IOException {
+		//TODO connect to the Server
+		Parent root = FXMLLoader.load(getClass().getResource("Lobby.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		String css = this.getClass().getResource("Style.css").toExternalForm();
+		scene.getStylesheets().add(css);
+		stage.show();
+	}
 
 	public void exampleMethod(ActionEvent e) {
 
