@@ -21,7 +21,7 @@ public class TestController {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
-	private TextField changeUsername;
+	public TextField changeUsername;
 	
 	@FXML
 	private AnchorPane scenePane;
