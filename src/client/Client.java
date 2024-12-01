@@ -8,10 +8,11 @@ public class Client {
 	private PrintWriter out;
 	private BufferedReader in;
 	private BufferedReader inputConsole = null;
-	private String name = "Peter";
+	private String name;
 
-	public Client(String ip, int port) throws UnknownHostException, IOException {
+	public Client(String ip, int port, String name) throws UnknownHostException, IOException {
 		startConnection(ip, port);
+		this.name = name;
 		chat();
 	}
 

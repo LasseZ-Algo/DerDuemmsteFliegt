@@ -8,20 +8,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import client.Client;
+import server.Server;
 
 public class TestController {
 
 	@FXML
-
+	public TextField ip;
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
 	public TextField changeUsername;
+	public Client client;
+	public Server server;
 	
 	@FXML
 	private AnchorPane scenePane;
@@ -51,7 +53,6 @@ public class TestController {
 		stage.close();
 	}
 	
-	//TODO Get this working
 	public void getUsername(ActionEvent event) {
 		String username = changeUsername.getText();
 		System.out.println(username);
@@ -68,6 +69,8 @@ public class TestController {
 	}
 	
 	public void switchToLobby(ActionEvent event) throws IOException {
+		//server = Server.getInstance();
+		//client = new Client("127.0.0.1", 5555, changeUsername.getText());
 		Parent root = FXMLLoader.load(getClass().getResource("Lobby.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -88,14 +91,19 @@ public class TestController {
 	}
 	
 	public void connect(ActionEvent event) throws IOException {
-		//TODO connect to the Server
-		Parent root = FXMLLoader.load(getClass().getResource("Lobby.fxml"));
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		String css = this.getClass().getResource("Style.css").toExternalForm();
-		scene.getStylesheets().add(css);
-		stage.show();
+		try{
+			//client = new Client(ip.getText(), 5555, changeUsername.getText());
+			Parent root = FXMLLoader.load(getClass().getResource("Lobby.fxml"));
+			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			scene = new Scene(root);
+			stage.setScene(scene);
+			String css = this.getClass().getResource("Style.css").toExternalForm();
+			scene.getStylesheets().add(css);
+			stage.show();
+			
+		}catch (Exception e){
+			//TODO give Error Message to Player
+		}
 	}
 
 	public void exampleMethod(ActionEvent e) {
