@@ -11,6 +11,7 @@ import server.Server;
 public class testConnection {
 
 	public static void main(String[] args) throws IOException {	
-		Server server = Server.getInstance();
+		Server server = new Server();
+		server.start();
 	}
 }

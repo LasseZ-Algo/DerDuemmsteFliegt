@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import client.Client;
 import server.Server;
 
-public class TestController {
+public class MainMenuController {
 
 	@FXML
 	public TextField ip;

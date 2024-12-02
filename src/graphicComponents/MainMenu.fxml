@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1066.0" prefWidth="1530.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicComponents.TestController">
+<AnchorPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1066.0" prefWidth="1530.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicComponents.MainMenuController">
    <children>
       <Button layoutX="38.0" layoutY="774.0" mnemonicParsing="false" onAction="#switchToCredits" prefHeight="114.0" prefWidth="300.0" text="Credits" />
       <TextField fx:id="IPAdress" alignment="CENTER" layoutX="38.0" layoutY="207.0" prefHeight="145.0" prefWidth="300.0" promptText="IP-Adress" />

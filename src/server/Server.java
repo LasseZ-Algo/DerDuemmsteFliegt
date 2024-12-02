@@ -5,36 +5,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.*;
 
-public final class Server {
-	private static Server INSTANCE;
+public final class Server extends Thread {
 	private ServerSocket serverSocket;
 	private List<ClientHandler> clients = new ArrayList<>();
+	int port = 5555;
+	boolean isRunning = true;
 	
-	private Server() throws IOException {
-		start(5555);
-	}
-	
-	public static Server getInstance() throws IOException {
-		if(INSTANCE == null) {
-			INSTANCE = new Server();
-		}
-		
-		return INSTANCE;
+	public Server() throws IOException {
+
 	}
 
-	public void start(int port) throws IOException {
-		serverSocket = new ServerSocket(port);
-		GameLogic gameLogic = new GameLogic();
-		Session session = new Session(gameLogic, clients);
-		System.out.println("Server startet");
-		while (true) {
-			ClientHandler client = new ClientHandler(serverSocket.accept(), clients, session);
-			client.start();
-			clients.add(client);
+	public void run() {
+		try {
+			serverSocket = new ServerSocket(port);
+			GameLogic gameLogic = new GameLogic();
+			Session session = new Session(gameLogic, clients);
+			System.out.println("Server startet");
+			while (isRunning) {
+				ClientHandler client = new ClientHandler(serverSocket.accept(), clients, session);
+				client.start();
+				clients.add(client);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
-	public void stop() throws IOException {
+	public void close() throws IOException {
 		serverSocket.close();
+		isRunning = false;
 	}
 }

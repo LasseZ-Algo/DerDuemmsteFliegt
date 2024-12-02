@@ -42,9 +42,26 @@ public class FileManager {
 			e.printStackTrace();
 		}
 	}
+	
+	public void writeData(String filename, UserData userdata) {
+		try {
+			FileWriter writer = new FileWriter(path + filename);
+			writer.write(userdata.getUserID());
+			writer.write(userdata.getUserName());
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
-	public void readData(String filename) {
-
+	public UserData readData(String filename) throws FileNotFoundException{
+		File file = new File(path + filename);
+		Scanner reader = new Scanner(file);
+		String id = reader.nextLine();
+		String name = reader.nextLine();
+		reader.close();
+		return new UserData(id,name);
 	}
 
 	public Category read(String filename) {

@@ -9,7 +9,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
-public class TestJavaFx extends Application {
+public class SceneStarter extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicComponents.TestController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicComponents.MainMenuController">
    <children>
       <Label layoutX="161.0" layoutY="39.0" prefHeight="221.0" prefWidth="279.0" text="Andi und Lasse" />
       <Button fx:id="backToMain" layoutX="243.0" layoutY="291.0" mnemonicParsing="false" onAction="#switchToMainmenu" text="Back to Mainmenu" />

@@ -13,7 +13,7 @@ public class Client {
 	public Client(String ip, int port, String name) throws UnknownHostException, IOException {
 		startConnection(ip, port);
 		this.name = name;
-		chat();
+		startchat();
 	}
 
 	private void startConnection(String ip, int port) throws UnknownHostException, IOException {
@@ -26,6 +26,7 @@ public class Client {
 		in.close();
 		out.close();
 		clientSocket.close();
+		System.out.println("Client disconnected");
 	}
 
 	// sends msg to Server
@@ -33,24 +34,11 @@ public class Client {
 		out.println(1 + msg);
 	}
 
-	public String receiveMessage() throws IOException {
-		return in.readLine();
-	}
-
 	// prints msg from Server, Client can write msg to Server
-	public void chat() throws IOException {
+	private void startchat() throws IOException {
 		out.println(name);
 		InputReader input = new InputReader(in);
 		Thread thread = new Thread(input);
 		thread.start();
-		inputConsole = new BufferedReader(new InputStreamReader(System.in));
-		while(thread.isAlive()) {
-			String line = "";
-			line = inputConsole.readLine();
-			sendMessage(line);
-		}
-		input.stop();
-		stopConnection();
-		System.out.println("Client disconnected");
 	}
 }
