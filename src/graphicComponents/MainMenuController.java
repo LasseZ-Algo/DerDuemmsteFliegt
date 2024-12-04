@@ -69,7 +69,7 @@ public class MainMenuController {
 	}
 	
 	public void switchToLobby(ActionEvent event) throws IOException {
-		//server = Server.getInstance();
+		//server = Server.getInstance(ViewModel viewModel);
 		//client = new Client("127.0.0.1", 5555, changeUsername.getText());
 		Parent root = FXMLLoader.load(getClass().getResource("Lobby.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -92,7 +92,7 @@ public class MainMenuController {
 	
 	public void connect(ActionEvent event) throws IOException {
 		try{
-			//client = new Client(ip.getText(), 5555, changeUsername.getText());
+			//client = new Client(ip.getText(), 5555, changeUsername.getText(), ViewModel viewModel);
 			Parent root = FXMLLoader.load(getClass().getResource("Lobby.fxml"));
 			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			scene = new Scene(root);

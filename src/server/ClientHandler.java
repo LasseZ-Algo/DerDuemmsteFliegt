@@ -40,6 +40,8 @@ class ClientHandler extends Thread {
 			e.printStackTrace();
 		}
 		
+		//ViewModel.LobbyController.addplayer
+		
 		System.out.println(name + " connected.");
 
 		broadcast(1 + "Hello " + name);

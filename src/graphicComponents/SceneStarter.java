@@ -31,6 +31,7 @@ public class SceneStarter extends Application {
 		launch(args);
 	}
 
+	
 	// Close application on red cross
 	public void quitApplication(Stage stage) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
