@@ -2,6 +2,8 @@ package client;
 
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import questionAnswerClasses.AllAnswers;
 import questionAnswerClasses.Answer;
 import server.Player;
@@ -14,7 +16,8 @@ public class ClientLogic {
 	private List<Player> players;
 	private AllAnswers answers;
 	private boolean isVoting;
- 	
+	public ObservableList<String> chat = FXCollections.observableArrayList();
+	
 	
 	void initGame(String players, String gameRules) {
 		String[] gameRulesArray = gameRules.split("~");

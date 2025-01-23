@@ -12,7 +12,7 @@ public final class Server extends Thread {
 	boolean isRunning = true;
 	
 	public Server() throws IOException {
-
+		
 	}
 
 	public void run() {

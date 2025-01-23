@@ -69,15 +69,22 @@ public class MainMenuController {
 	}
 	
 	public void switchToLobby(ActionEvent event) throws IOException {
-		//server = Server.getInstance(ViewModel viewModel);
-		//client = new Client("127.0.0.1", 5555, changeUsername.getText());
-		Parent root = FXMLLoader.load(getClass().getResource("Lobby.fxml"));
+		server = new Server();
+		Thread thread = new Thread(server);
+		thread.start();
+		client = new Client("127.0.0.1", 5555, changeUsername.getText());
+		
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("Lobby.fxml"));
+		Parent root = loader.load();
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		String css = this.getClass().getResource("Style.css").toExternalForm();
 		scene.getStylesheets().add(css);
 		stage.show();
+		LobbyController lobby = loader.getController();
+		lobby.init(client, true);
 	}
 	
 	public void switchToGame(ActionEvent event) throws IOException {
@@ -92,14 +99,19 @@ public class MainMenuController {
 	
 	public void connect(ActionEvent event) throws IOException {
 		try{
-			//client = new Client(ip.getText(), 5555, changeUsername.getText(), ViewModel viewModel);
-			Parent root = FXMLLoader.load(getClass().getResource("Lobby.fxml"));
+			client = new Client(ip.getText(), 5555, changeUsername.getText());
+			
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("Lobby.fxml"));
+			Parent root = loader.load();
 			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
 			String css = this.getClass().getResource("Style.css").toExternalForm();
 			scene.getStylesheets().add(css);
 			stage.show();
+			LobbyController lobby = loader.getController();
+			lobby.init(client, true);
 			
 		}catch (Exception e){
 			//TODO give Error Message to Player

@@ -22,7 +22,10 @@
                <children>
                   <ScrollPane hbarPolicy="NEVER" layoutX="37.0" layoutY="64.0" prefHeight="515.0" prefWidth="287.0" AnchorPane.bottomAnchor="98.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="64.0">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="445.0" prefWidth="286.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="460.0" prefWidth="286.0">
+                           <children>
+                              <ListView fx:id="chatList" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children></AnchorPane>
                     </content>
                   </ScrollPane>
                   <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="102.0" prefHeight="52.0" prefWidth="148.0" text="Chat" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="102.0" AnchorPane.topAnchor="0.0">
@@ -30,7 +33,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <TextField AnchorPane.bottomAnchor="98.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="28.0" />
+                  <TextField onAction="#sendmsg" AnchorPane.bottomAnchor="98.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="28.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="677.0" prefWidth="310.0" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="84.0">

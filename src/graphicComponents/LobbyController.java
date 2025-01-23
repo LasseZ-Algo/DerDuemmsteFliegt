@@ -10,6 +10,7 @@ import javafx.scene.control.ListView;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import client.Client;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -24,7 +25,10 @@ public class LobbyController {
 	private Stage stage;
 	private Scene scene;
 	public Label lobbyName;
-	public ListView list;
+	public ListView<String> list;
+	public ListView<String> chatList;
+	private boolean isAdmin;
+	private Client client;
 	
 	public void setLobbyText(String lobbyname) {
 		this.lobbyName.setText(lobbyname);
@@ -33,7 +37,6 @@ public class LobbyController {
 	public void testEvent(ActionEvent e) {
 		setLobbyText("Jochens Lobby");
 	}
-	
 	
 	public void disconnect(ActionEvent event) throws IOException {
 		//TODO implement Disconnect
@@ -47,10 +50,20 @@ public class LobbyController {
 	}
 	
 	public void sendmsg(ActionEvent event) {
-		
+		client.sendMessage(null);
 	}
 	
 	public void fillplayers(ObservableList<String> player) {		
 		list.setItems(player);
+	}
+	
+	public void chat(ObservableList<String> chat) {
+		chatList.setItems(chat);
+	}
+	
+	public void init(Client client, boolean isAdmin) {
+		this.client = client;
+		this.isAdmin = isAdmin;
+		chat(client.input.clientLogic.chat);
 	}
 }

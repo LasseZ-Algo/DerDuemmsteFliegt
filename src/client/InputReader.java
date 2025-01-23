@@ -5,17 +5,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.application.Platform;
 import questionAnswerClasses.AllAnswers;
 import questionAnswerClasses.Answer;
 import server.Player;
 
 public class InputReader implements Runnable {
 	private BufferedReader in;
-	private ClientLogic clientLogic;
+	public ClientLogic clientLogic;
 	boolean isRunning = true;
 
 	public InputReader(BufferedReader in) {
 		this.in = in;
+		clientLogic = new ClientLogic();
 	}
 
 	public void stop() {
@@ -30,11 +32,13 @@ public class InputReader implements Runnable {
 				inputType = (char) in.read();
 				switch (inputType) {
 				case '1': // Chat msg
-					try {
-						System.out.println(in.readLine());
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+					Platform.runLater(() -> {
+						try {
+							clientLogic.chat.add(in.readLine());
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					});
 					break;
 
 				case '2': // ActivePlayer and Question
