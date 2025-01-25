@@ -33,7 +33,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <TextField onAction="#sendmsg" AnchorPane.bottomAnchor="98.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="28.0" />
+                  <TextField fx:id="chatInput" onAction="#sendmsg" AnchorPane.bottomAnchor="98.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="28.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="677.0" prefWidth="310.0" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="84.0">

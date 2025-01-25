@@ -27,13 +27,13 @@ public final class Server extends Thread {
 				clients.add(client);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
 		}
+		System.out.println("Server Ende");
 	}
 
 	public void close() throws IOException {
-		serverSocket.close();
 		isRunning = false;
+		serverSocket.close();
 	}
 }

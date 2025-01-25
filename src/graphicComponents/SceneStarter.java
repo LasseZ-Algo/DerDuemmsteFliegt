@@ -10,10 +10,15 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 public class SceneStarter extends Application {
-
+	Data data;
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+		data = new Data();
+		
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("MainMenu.fxml"));
+		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		primaryStage.setTitle("Hello World");
 		primaryStage.setScene(scene);
@@ -25,6 +30,9 @@ public class SceneStarter extends Application {
 			quitApplication(primaryStage);
 		});
 		primaryStage.show();
+		MainMenuController mainMenu = loader.getController();
+		mainMenu.init(data);
+		
 	}
 
 	public static void main(String[] args) {
@@ -40,6 +48,9 @@ public class SceneStarter extends Application {
 
 		if (alert.showAndWait().get() == ButtonType.OK) {
 			stage.close();
+			System.out.println("ENDE!");
+			data.shutdown();
 		}
+		
 	}
 }

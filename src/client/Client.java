@@ -7,7 +7,6 @@ public class Client {
 	private Socket clientSocket;
 	private PrintWriter out;
 	private BufferedReader in;
-	private BufferedReader inputConsole = null;
 	private String name;
 	public InputReader input;
 
@@ -24,15 +23,15 @@ public class Client {
 	}
 
 	public void stopConnection() throws IOException {
-		in.close();
 		out.close();
 		clientSocket.close();
+		input.stop();
 		System.out.println("Client disconnected");
 	}
 
 	// sends msg to Server
 	public void sendMessage(String msg) {
-		out.println(1 + msg);
+		out.println(1 + name + ": " + msg);
 	}
 
 	// prints msg from Server, Client can write msg to Server

@@ -2,6 +2,7 @@ package client;
 
 import java.util.List;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import questionAnswerClasses.AllAnswers;
@@ -18,6 +19,12 @@ public class ClientLogic {
 	private boolean isVoting;
 	public ObservableList<String> chat = FXCollections.observableArrayList();
 	
+	
+	void addChat(String msg) {
+		Platform.runLater(() -> {
+			chat.add(msg);
+		});	
+	}
 	
 	void initGame(String players, String gameRules) {
 		String[] gameRulesArray = gameRules.split("~");

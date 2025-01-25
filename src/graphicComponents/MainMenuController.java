@@ -17,13 +17,13 @@ import server.Server;
 public class MainMenuController {
 
 	@FXML
+	private Data data;
 	public TextField ip;
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
 	public TextField changeUsername;
-	public Client client;
-	public Server server;
+
 	
 	@FXML
 	private AnchorPane scenePane;
@@ -50,6 +50,7 @@ public class MainMenuController {
 
 	public void quitApplication(ActionEvent e) {
 		stage = (Stage) scenePane.getScene().getWindow();
+		data.shutdown();
 		stage.close();
 	}
 	
@@ -69,11 +70,11 @@ public class MainMenuController {
 	}
 	
 	public void switchToLobby(ActionEvent event) throws IOException {
-		server = new Server();
-		Thread thread = new Thread(server);
+		data.setAdmin(true);
+		data.setServer(new Server());
+		Thread thread = new Thread(data.getServer());
 		thread.start();
-		client = new Client("127.0.0.1", 5555, changeUsername.getText());
-		
+		data.setClient(new Client("127.0.0.1", 5555, changeUsername.getText())); 
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("Lobby.fxml"));
 		Parent root = loader.load();
@@ -84,7 +85,8 @@ public class MainMenuController {
 		scene.getStylesheets().add(css);
 		stage.show();
 		LobbyController lobby = loader.getController();
-		lobby.init(client, true);
+		
+		lobby.init(data);
 	}
 	
 	public void switchToGame(ActionEvent event) throws IOException {
@@ -99,8 +101,8 @@ public class MainMenuController {
 	
 	public void connect(ActionEvent event) throws IOException {
 		try{
-			client = new Client(ip.getText(), 5555, changeUsername.getText());
-			
+			data.setAdmin(false);
+			data.setClient(new Client(ip.getText(), 5555, changeUsername.getText()));
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("Lobby.fxml"));
 			Parent root = loader.load();
@@ -111,13 +113,18 @@ public class MainMenuController {
 			scene.getStylesheets().add(css);
 			stage.show();
 			LobbyController lobby = loader.getController();
-			lobby.init(client, true);
+			lobby.init(data);
 			
 		}catch (Exception e){
-			//TODO give Error Message to Player
+			System.out.println("Fehler beim Verbinden");
+			e.printStackTrace();
 		}
 	}
-
+	
+	public void init(Data data) {
+		this.data = data;
+	}
+	
 	public void exampleMethod(ActionEvent e) {
 
 	}
