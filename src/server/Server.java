@@ -10,9 +10,9 @@ public final class Server extends Thread {
 	private List<ClientHandler> clients = new ArrayList<>();
 	int port = 5555;
 	boolean isRunning = true;
-	
+
 	public Server() throws IOException {
-		
+
 	}
 
 	public void run() {

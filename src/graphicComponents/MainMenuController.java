@@ -52,6 +52,7 @@ public class MainMenuController {
 		stage = (Stage) scenePane.getScene().getWindow();
 		data.shutdown();
 		stage.close();
+		System.exit(0);
 	}
 	
 	public void getUsername(ActionEvent event) {
@@ -74,6 +75,10 @@ public class MainMenuController {
 		data.setServer(new Server());
 		Thread thread = new Thread(data.getServer());
 		thread.start();
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+		}
 		data.setClient(new Client("127.0.0.1", 5555, changeUsername.getText())); 
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("Lobby.fxml"));

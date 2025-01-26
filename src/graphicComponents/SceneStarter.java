@@ -50,6 +50,7 @@ public class SceneStarter extends Application {
 			stage.close();
 			System.out.println("ENDE!");
 			data.shutdown();
+			System.exit(0);
 		}
 		
 	}
