@@ -70,6 +70,7 @@ public class LobbyController {
 	
 	public void init(Data data) {
 		this.data = data;
-		chat(data.getClient().input.clientLogic.chat);
+		chat(data.getClient().input.clientLogic.getChat());
+		fillplayers(data.getClient().input.clientLogic.getPlayerNames());
 	}
 }

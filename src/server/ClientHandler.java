@@ -41,10 +41,7 @@ class ClientHandler extends Thread {
 		}
 		
 		//ViewModel.LobbyController.addplayer
-		
-		System.out.println(name + " connected.");
-
-		broadcast(1 + "Hello " + name);
+		initialize();
 
 		boolean isRunning = true;
 		while (isRunning) {
@@ -164,5 +161,13 @@ class ClientHandler extends Thread {
 
 	public String getPlayerName() {
 		return name;
+	}
+	
+	//TODO Initialize the newly connected player
+	private void initialize(){
+		
+		
+		System.out.println(name + " connected.");
+		broadcast(1 + "Hello " + name);
 	}
 }
