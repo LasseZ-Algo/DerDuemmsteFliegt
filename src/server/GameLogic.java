@@ -9,33 +9,22 @@ import questionAnswerClasses.Answer;
 import questionAnswerClasses.Question;
 
 public class GameLogic {
-	private List<Player> player;
+	private List<Player> player = new ArrayList<Player>();
 	private int turnCount; // Number of Turns per Round / Time per Turn
 	private AllQuestions quests;
 	private AllAnswers anws;
-	private int[] gamerules;
+	private int[] gamerules = new int[2];
+	private boolean inGame;
 	// TODO Save Gamerules
 	
-	public void initializeGame(int[] gamerules, List<ClientHandler> clients) {
-		this.gamerules = gamerules;
-		this.turnCount = gamerules[1];
-		createPlayers(clients, gamerules[0]);
-	}
-
-	private void createPlayers(List<ClientHandler> clients, int life) {
-		for (ClientHandler c : clients) {
-			player.add(new Player(life, c.getPlayerName()));
-		}
-	}
-
-	public int[] getGameRules() {
-		return this.gamerules;
+	public boolean inGame() {
+		return inGame;
 	}
 	
 	public String getGameRulesString() {
 		String gameRulesString = "";
 		for(int i = 0; i < gamerules.length; i++) {
-			if(i < gamerules.length) {
+			if(i < gamerules.length - 1) {
 				gameRulesString += gamerules[i] + "~";
 			} else {
 				gameRulesString += gamerules[i];
@@ -88,10 +77,10 @@ public class GameLogic {
 	public String getPlayerNames() {
 		String playerNamesString = "";
 		for(int i = 0; i < player.size(); i++) {
-			if(i < player.size()) {
-				playerNamesString += player.get(i) + "~";
+			if(i < player.size() - 1) {
+				playerNamesString += player.get(i).getName() + "~";
 			} else {
-				playerNamesString += player.get(i);
+				playerNamesString += player.get(i).getName();
 			}
 		}
 		return playerNamesString;
@@ -132,4 +121,25 @@ public class GameLogic {
 			return false;
 		}
 	}
+
+	public List<Player> getPlayer() {
+		return player;
+	}
+	
+	public void addPlayer(Player player) {
+		this.player.add(player);
+	}
+	
+	public void removePlayer(int index) {
+		this.player.remove(index);
+	}
+
+	public int[] getGameRules() {
+		return gamerules;
+	}
+	
+	public void setGameRule(int index, int value) {
+		gamerules[index] = value;
+	}
+	
 }

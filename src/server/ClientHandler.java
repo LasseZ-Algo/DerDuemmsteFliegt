@@ -15,7 +15,6 @@ class ClientHandler extends Thread {
 	private String name;
 	private Session session;
 
-
 	public ClientHandler(Socket socket, List<ClientHandler> clients, Session session) {
 		this.clientSocket = socket;
 		clientList = clients;
@@ -39,8 +38,8 @@ class ClientHandler extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		//ViewModel.LobbyController.addplayer
+
+		// ViewModel.LobbyController.addplayer
 		initialize();
 
 		boolean isRunning = true;
@@ -107,21 +106,6 @@ class ClientHandler extends Thread {
 					e.printStackTrace();
 				}
 				break;
-			case '9': // initialize Game
-				try {
-					String initialize = in.readLine();
-					String[] initializer = initialize.split("~");
-					int[] gamerules = {0, 0};
-					for(int i = 0; i < initializer.length; i++) { 
-						gamerules[i] = Integer.parseInt(initializer[i]); 
-					}
-					session.initializeGame(gamerules, clientList);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				break;
 			case '0': // No Input
 
 				break;
@@ -134,13 +118,20 @@ class ClientHandler extends Thread {
 		}
 		try {
 			in.close();
-			out.close(); 
+			out.close();
 			clientSocket.close();
 			System.out.println(name + " disconnected.");
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			if (!session.inGame()) {
+				for (int i = 0; i < clientList.size(); i++) {
+					if (clientList.get(i) == this) {
+						session.removePlayer(i);
+					}
+				}
+			}
 		}
-
 
 		/*
 		 * TODO safely close in.close(); out.close(); clientSocket.close();
@@ -162,12 +153,12 @@ class ClientHandler extends Thread {
 	public String getPlayerName() {
 		return name;
 	}
-	
-	//TODO Initialize the newly connected player
-	private void initialize(){
-		
-		
+
+	// TODO Initialize the newly connected player
+	private void initialize() {
 		System.out.println(name + " connected.");
 		broadcast(1 + "Hello " + name);
+		session.addPlayer(new Player(name));
+		sendMessage("3" + session.init());
 	}
 }

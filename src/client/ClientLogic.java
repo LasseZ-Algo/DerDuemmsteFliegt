@@ -1,5 +1,6 @@
 package client;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
@@ -14,10 +15,10 @@ public class ClientLogic {
 
 	private int activePlayer;
 	private String question;
-	private List<Integer> gameRules;
-	private List<Player> players;
-	private ObservableList<String> categories;
-	private ObservableList<String> playerNames;
+	private int[] gameRules = new int[2];
+	private List<Player> players = new ArrayList<Player>();
+	private ObservableList<String> categories = FXCollections.observableArrayList();
+	private ObservableList<String> playerNames = FXCollections.observableArrayList();
 	private AllAnswers answers;
 	private boolean isVoting;
 	private ObservableList<String> chat = FXCollections.observableArrayList();
@@ -66,17 +67,17 @@ public class ClientLogic {
 		});
 	}
 
-	void initGame(String players, String gameRules) {
+	void init(String players, String gameRules) {
 		String[] gameRulesArray = gameRules.split("~");
-		for (String ruleValue : gameRulesArray) {
-			this.gameRules.add(Integer.parseInt(ruleValue));
+		for (int i = 0; i < gameRulesArray.length; i++) {
+			this.gameRules[i] = Integer.parseInt(gameRulesArray[i]);
 		}
 		String[] playerArray = players.split("~");
 		for (String playerName : playerArray) {
-			this.players.add(new Player(this.gameRules.get(0), playerName));
+			this.players.add(new Player(this.gameRules[0], playerName));
 		}
 		Platform.runLater(() -> {
-			for (int i = 0; i < players.length(); i++) {
+			for (int i = 0; i < this.players.size(); i++) {
 				playerNames.add(this.players.get(i).getName());
 			}
 		});
@@ -113,7 +114,7 @@ public class ClientLogic {
 		this.question = question;
 	}
 
-	void sync(int activePlayer, String question, List<Integer> gameRules, List<Player> players, AllAnswers answers,
+	void sync(int activePlayer, String question, int[] gameRules, List<Player> players, AllAnswers answers,
 			boolean isVoting) {
 
 		this.activePlayer = activePlayer;

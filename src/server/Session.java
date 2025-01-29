@@ -92,15 +92,16 @@ public class Session {
 		}
 	}
 
-	public void initializeGame(int[] gamerules, List<ClientHandler> clients) {
-		gL.initializeGame(gamerules, clients);
-		broadcast("31~" + gL.getPlayerNames());
-
-		broadcast("32~" + gL.getPlayerLife(0));
-
-		broadcast("33~" + gL.getTurnCount());
-
-		// TODO Gamerules
+	public void addPlayer(Player player) {
+		gL.addPlayer(player);
+	}
+	
+	public void removePlayer(int index) {
+		gL.removePlayer(index);
+	}
+	
+	public void setGameRule(int index, int value) {
+		gL.setGameRule(index, value);
 	}
 
 	private void broadcast(String msg) {
@@ -109,13 +110,21 @@ public class Session {
 		}
 	}
 	
-	//int activePlayer | String question | List<Integer> gameRules | 
-	//List<Player> players | AllAnswers answers
+	public boolean inGame() {
+		return gL.inGame();
+	}
+	
+	public String init() {
+		return gL.getPlayerNames() + "§" + gL.getGameRulesString();
+	}
+	
+	//int activePlayer § String question § List<Integer> gameRules § 
+	//List<Player> players § AllAnswers answers
 	public void sync(ClientHandler client) {
-		String sync = activePlayer + "|" 
-						+ activeQuestion.getQuery() + "|"
-						+ gL.getGameRulesString() + "|" 
-						+ gL.getPlayerNames() + "|" 
+		String sync = activePlayer + "§" 
+						+ activeQuestion.getQuery() + "§"
+						+ gL.getGameRulesString() + "§" 
+						+ gL.getPlayerNames() + "§" 
 						+ gL.getAllAnswers();
 		client.sendMessage(sync);
 	}
