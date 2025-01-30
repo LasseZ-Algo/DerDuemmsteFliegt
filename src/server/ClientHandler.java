@@ -106,8 +106,14 @@ class ClientHandler extends Thread {
 					e.printStackTrace();
 				}
 				break;
+				
+			case 'p': //Ping
+				
+				
+				break;
+				
 			case '0': // No Input
-
+				
 				break;
 			default: // Unexpected input
 				/*
@@ -124,9 +130,11 @@ class ClientHandler extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
+			System.out.println("finally");
 			if (!session.inGame()) {
 				for (int i = 0; i < clientList.size(); i++) {
 					if (clientList.get(i) == this) {
+						System.out.println("removery");
 						session.removePlayer(i);
 					}
 				}
@@ -158,7 +166,16 @@ class ClientHandler extends Thread {
 	private void initialize() {
 		System.out.println(name + " connected.");
 		broadcast(1 + "Hello " + name);
-		session.addPlayer(new Player(name));
+		int[] multi = new int[1];
+		if (!session.inGame()) {
+			for (int i = 0; i < clientList.size(); i++) {
+				if (clientList.get(i) == this) {
+					multi[0] = i;
+					session.addPlayer(new Player(name), multi);
+				}
+			}
+		}
 		sendMessage("3" + session.init());
+
 	}
 }

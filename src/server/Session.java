@@ -92,12 +92,14 @@ public class Session {
 		}
 	}
 
-	public void addPlayer(Player player) {
+	public void addPlayer(Player player, int[] multi) {
 		gL.addPlayer(player);
+		multicast("7" + player.getName(), multi);
 	}
 	
 	public void removePlayer(int index) {
 		gL.removePlayer(index);
+		broadcast("8" + index);
 	}
 	
 	public void setGameRule(int index, int value) {
@@ -107,6 +109,16 @@ public class Session {
 	private void broadcast(String msg) {
 		for (ClientHandler client : clients) {
 			client.sendMessage(msg);
+		}
+	}
+	
+	private void multicast(String msg, int[] multi) {
+		for (int i = 0; i < clients.size(); i++){
+			for(int o = 0; o < multi.length; o++) {
+				if(multi[o] != i){
+					clients.get(i).sendMessage(msg);
+				}
+			}
 		}
 	}
 	

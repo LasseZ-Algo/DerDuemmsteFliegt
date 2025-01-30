@@ -61,7 +61,12 @@ public class InputReader implements Runnable {
 				case '3': // Initialize game (Players,[Gamerulez])
 					try { // "Jochen~Hans$3~2"
 						String[] initValues = in.readLine().split("§");
-						clientLogic.init(initValues[0], initValues[1]);
+						if(initValues.length == 2){
+							clientLogic.init(initValues[0], initValues[1]);
+						}else{
+							clientLogic.init(initValues[0]);
+						}
+						
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -100,7 +105,23 @@ public class InputReader implements Runnable {
 						e.printStackTrace();
 					}
 					break;
+					
+				case '7': // Add Playername to Playerlist
+					try {
+						clientLogic.addPlayer(new Player(in.readLine()));
+					} catch(IOException e) {
+						e.printStackTrace();
+					}
+					break;
 
+				case'8': // Remove Playername from Playerlist
+					try {
+						clientLogic.removePlayer(Integer.parseInt(in.readLine()));
+					} catch(IOException e) {
+						e.printStackTrace();
+					}
+					break;
+				
 				case '9': // sync with gamestate
 					// int activePlayer $ String question $ List<Integer> gameRules $
 					// List<Player> players $ AllAnswers answers
@@ -143,6 +164,12 @@ public class InputReader implements Runnable {
 					}
 					break;
 
+					
+				case 'p': //Ping
+					
+					
+					break;
+					
 				case '0': // no input
 					break;
 

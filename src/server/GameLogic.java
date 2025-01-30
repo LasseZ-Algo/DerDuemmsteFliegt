@@ -73,7 +73,7 @@ public class GameLogic {
 	public int getTurnCount() {
 		return turnCount;
 	}
-
+	
 	public String getPlayerNames() {
 		String playerNamesString = "";
 		for(int i = 0; i < player.size(); i++) {

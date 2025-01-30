@@ -82,6 +82,13 @@ public class ClientLogic {
 			}
 		});
 	}
+	
+	void init(String gameRules) {
+		String[] gameRulesArray = gameRules.split("~");
+		for (int i = 0; i < gameRulesArray.length; i++) {
+			this.gameRules[i] = Integer.parseInt(gameRulesArray[i]);
+		}
+	}
 
 	void addAnswer(Answer answer) {
 		answers.add(answer);
