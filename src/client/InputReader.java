@@ -2,6 +2,7 @@ package client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +15,13 @@ public class InputReader implements Runnable {
 	private BufferedReader in;
 	public ClientLogic clientLogic;
 	boolean isRunning = true;
+	private PrintWriter out;
+	private Client client;
 
-	public InputReader(BufferedReader in) {
+	public InputReader(BufferedReader in, PrintWriter out, Client client) {
 		this.in = in;
+		this.out = out;
+		this.client = client;
 		clientLogic = new ClientLogic();
 	}
 
@@ -163,11 +168,13 @@ public class InputReader implements Runnable {
 						e.printStackTrace();
 					}
 					break;
-
 					
-				case 'p': //Ping
+				case 'p': //ping
+					out.println("p");
+					break;
 					
-					
+				case 'd': //disconnect
+					client.stopConnection();
 					break;
 					
 				case '0': // no input

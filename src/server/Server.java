@@ -33,6 +33,9 @@ public final class Server extends Thread {
 	}
 
 	public void close() throws IOException {
+		for(ClientHandler client : clients) {
+			client.sendMessage("d");
+		}
 		isRunning = false;
 		serverSocket.close();
 	}

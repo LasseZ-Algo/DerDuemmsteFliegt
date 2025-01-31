@@ -18,11 +18,17 @@ public class Client {
 
 	private void startConnection(String ip, int port) throws UnknownHostException, IOException {
 		clientSocket = new Socket(ip, port);
+		try {
+			clientSocket.setSoTimeout(10000);
+		} catch (SocketException e) {
+			stopConnection();
+		}
 		out = new PrintWriter(clientSocket.getOutputStream(), true);
 		in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 	}
 
 	public void stopConnection() throws IOException {
+		out.println("d");
 		out.close();
 		clientSocket.close();
 		input.stop();
@@ -37,7 +43,7 @@ public class Client {
 	// prints msg from Server, Client can write msg to Server
 	private void startchat() throws IOException {
 		out.println(name);
-		input = new InputReader(in);
+		input = new InputReader(in, out, this);
 		Thread thread = new Thread(input);
 		thread.start();
 	}
