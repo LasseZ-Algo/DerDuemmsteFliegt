@@ -1,5 +1,6 @@
 package graphicComponents;
 
+import javafx.beans.value.ObservableBooleanValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,7 +37,7 @@ public class LobbyController {
 	}
 	
 	public void testEvent(ActionEvent e) {
-		setLobbyText("Jochens Lobby");
+		data.getServer().kick(1);
 	}
 	
 	public void disconnect(ActionEvent event) throws IOException {
@@ -68,8 +69,30 @@ public class LobbyController {
 		chatList.setItems(chat);
 	}
 	
+	public void forcedDisconnect(ObservableBooleanValue connected) {
+		if(!connected.get()) {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("MainMenu.fxml"));
+			Parent root;
+			try {
+				root = loader.load();
+				scene = new Scene(root);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			stage.setScene(scene);
+			String css = this.getClass().getResource("Style.css").toExternalForm();
+			scene.getStylesheets().add(css);
+			stage.show();
+			MainMenuController mainMenu = loader.getController();
+			mainMenu.init(data);
+		}
+	}
+	
 	public void init(Data data) {
 		this.data = data;
+		forcedDisconnect(data.getClient().Connected);
 		chat(data.getClient().input.clientLogic.getChat());
 		fillplayers(data.getClient().input.clientLogic.getPlayerNames());
 	}

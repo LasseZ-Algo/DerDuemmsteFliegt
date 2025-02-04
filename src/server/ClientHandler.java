@@ -137,8 +137,9 @@ class ClientHandler extends Thread {
 		 */
 	}
 
-	private void disconnect() {
+	public void disconnect() {
 		try {
+			out.println("d");
 			clock.halt();
 			isRunning = false;
 			in.close();

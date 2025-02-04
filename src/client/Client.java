@@ -3,12 +3,21 @@ package client;
 import java.io.*;
 import java.net.*;
 
+import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableBooleanValue;
+
 public class Client {
 	private Socket clientSocket;
 	private PrintWriter out;
 	private BufferedReader in;
 	private String name;
 	public InputReader input;
+	private boolean isConnected = true;
+	public ObservableBooleanValue Connected = new SimpleBooleanProperty(isConnected);
+	
 
 	public Client(String ip, int port, String name) throws UnknownHostException, IOException {
 		startConnection(ip, port);
@@ -25,6 +34,9 @@ public class Client {
 		}
 		out = new PrintWriter(clientSocket.getOutputStream(), true);
 		in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+		Platform.runLater(() -> {
+			isConnected = true;
+		});
 	}
 
 	public void stopConnection() throws IOException {
@@ -33,6 +45,9 @@ public class Client {
 		clientSocket.close();
 		input.stop();
 		System.out.println("Client disconnected");
+		Platform.runLater(() -> {
+			isConnected = false;
+		});
 	}
 
 	// sends msg to Server

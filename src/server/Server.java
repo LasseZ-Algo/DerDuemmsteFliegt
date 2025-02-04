@@ -39,4 +39,8 @@ public final class Server extends Thread {
 		isRunning = false;
 		serverSocket.close();
 	}
+	
+	public void kick(int i) {
+		clients.get(clients.size()-1).disconnect();
+	}
 }
