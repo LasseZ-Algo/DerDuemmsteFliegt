@@ -19,9 +19,11 @@ public class ClientLogic {
 	private List<Player> players = new ArrayList<Player>();
 	private ObservableList<String> categories = FXCollections.observableArrayList();
 	private ObservableList<String> playerNames = FXCollections.observableArrayList();
+	private ObservableList<String> chat = FXCollections.observableArrayList();
+	private ObservableList<String> gameRulesString = FXCollections.observableArrayList();
 	private AllAnswers answers;
 	private boolean isVoting;
-	private ObservableList<String> chat = FXCollections.observableArrayList();
+
 
 	void addChat(String msg) {
 		Platform.runLater(() -> {
@@ -80,6 +82,9 @@ public class ClientLogic {
 			for (int i = 0; i < this.players.size(); i++) {
 				playerNames.add(this.players.get(i).getName());
 			}
+			
+			gameRulesString.add("Runden" + this.gameRules[0]);
+			gameRulesString.add("Leben" + this.gameRules[1]);
 		});
 	}
 	

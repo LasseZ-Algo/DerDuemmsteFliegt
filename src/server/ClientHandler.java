@@ -153,6 +153,7 @@ class ClientHandler extends Thread {
 				for (int i = 0; i < clientList.size(); i++) {
 					if (clientList.get(i) == this) {
 						session.removePlayer(i);
+						clientList.remove(i);
 					}
 				}
 			}

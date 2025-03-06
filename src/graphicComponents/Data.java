@@ -3,13 +3,29 @@ package graphicComponents;
 import java.io.IOException;
 
 import client.Client;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import server.Server;
 
 public class Data {
 	private Client client;
 	private Server server;
 	private boolean isAdmin;
+	private Scene MainMenu;
+	private Stage stage;
 	
+	public Stage getStage() {
+		return stage;
+	}
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
+	public Scene getMainMenu() {
+		return MainMenu;
+	}
+	public void setMainMenu(Scene mainMenu) {
+		MainMenu = mainMenu;
+	}
 	public Client getClient() {
 		return client;
 	}

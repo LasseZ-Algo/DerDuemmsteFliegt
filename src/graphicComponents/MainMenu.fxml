@@ -8,7 +8,7 @@
 <AnchorPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1066.0" prefWidth="1530.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicComponents.MainMenuController">
    <children>
       <Button layoutX="38.0" layoutY="774.0" mnemonicParsing="false" onAction="#switchToCredits" prefHeight="114.0" prefWidth="300.0" text="Credits" />
-      <TextField fx:id="ip" alignment="CENTER" layoutX="38.0" layoutY="207.0" prefHeight="145.0" prefWidth="300.0" promptText="IP-Adress" />
+      <TextField fx:id="ip" alignment="CENTER" layoutX="38.0" layoutY="207.0" prefHeight="145.0" prefWidth="300.0" promptText="IP-Adress" text="127.0.0.1" />
       <TextField fx:id="changeUsername" alignment="CENTER" layoutX="1012.0" layoutY="207.0" onAction="#getUsername" prefHeight="145.0" prefWidth="318.0" promptText="Username">
          <font>
             <Font name="System Italic" size="13.0" />

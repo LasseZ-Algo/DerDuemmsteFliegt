@@ -32,6 +32,8 @@ public class SceneStarter extends Application {
 		primaryStage.show();
 		MainMenuController mainMenu = loader.getController();
 		mainMenu.init(data);
+		data.setStage(primaryStage);
+		data.setMainMenu(scene);
 		
 	}
 
